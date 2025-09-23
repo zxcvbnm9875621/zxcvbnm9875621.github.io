@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刷机工具 - FlashTool Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(25, 25, 35, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #0f3460 0%, #1a1a2e 100%);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #2d4059;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            color: #4cc9f0;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .main-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .panel {
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #2d4059;
+        }
+        
+        .panel-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4cc9f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .panel-title i {
+            margin-right: 10px;
+        }
+        
+        .device-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(40, 40, 60, 0.5);
+            border-radius: 6px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .connected {
+            background: #4cd137;
+            box-shadow: 0 0 8px #4cd137;
+        }
+        
+        .disconnected {
+            background: #e84118;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #0f3460 0%, #1a5fb4 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, #1a5fb4 0%, #0f3460 100%);
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(90deg, #c23616 0%, #e84118 100%);
+        }
+        
+        .btn-danger:hover {
+            background: linear-gradient(90deg, #e84118 0%, #c23616 100%);
+        }
+        
+        .file-selector {
+            display: flex;
+            margin: 15px 0;
+        }
+        
+        .file-path {
+            flex-grow: 1;
+            background: rgba(40, 40, 60, 0.7);
+            border: 1px solid #2d4059;
+            padding: 10px;
+            border-radius: 6px 0 0 6px;
+            color: #a0a0a0;
+        }
+        
+        .browse-btn {
+            background: #2d4059;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+        }
+        
+        .options {
+            margin: 20px 0;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+        
+        .progress-container {
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: rgba(40, 40, 60, 0.7);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4cc9f0 0%, #3a0ca3 100%);
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+        
+        .log-container {
+            background: rgba(20, 20, 30, 0.8);
+            border-radius: 6px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .log-time {
+            color: #4cc9f0;
+        }
+        
+        .log-info {
+            color: #4cd137;
+        }
+        
+        .log-warning {
+            color: #fbc531;
+        }
+        
+        .log-error {
+            color: #e84118;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #2d4059;
+            background: rgba(20, 20, 30, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <h1>FlashTool Pro - 刷机工具</h1>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="panel">
+                <div class="panel-title"><i>📱</i> 设备信息</div>
+                
+                <div class="device-status">
+                    <div class="status-indicator disconnected" id="statusIndicator"></div>
+                    <span id="statusText">设备未连接</span>
+                </div>
+                
+                <div class="file-selector">
+                    <input type="text" class="file-path" id="firmwarePath" placeholder="选择刷机包文件..." readonly>
+                    <button class="browse-btn" id="browseBtn">浏览</button>
+                </div>
+                
+                <div class="options">
+                    <div class="option">
+                        <input type="checkbox" id="clearData">
+                        <label for="clearData">清除用户数据</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="lockBootloader">
+                        <label for="lockBootloader">刷机后锁定Bootloader</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="backupData">
+                        <label for="backupData">刷机前备份数据</label>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="connectBtn"><i>🔗</i> 连接设备</button>
+                    <button class="btn" id="refreshBtn"><i>🔄</i> 刷新状态</button>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-title"><i>🔧</i> 刷机操作</div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>当前进度</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="startBtn"><i>🚀</i> 开始刷机</button>
+                    <button class="btn btn-danger" id="stopBtn" disabled><i>⏹️</i> 停止刷机</button>
+                </div>
+                
+                <div class="log-container" id="logContainer">
+                    <div class="log-entry">
+                        <span class="log-time">[12:30:45]</span>
+                        <span class="log-info">刷机工具已启动，等待设备连接...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>FlashTool Pro v2.1.5 | 仅供测试使用 | 刷机有风险，操作需谨慎</p>
+        </footer>
+    </div>
+
+    <script>
+        // 模拟设备连接状态
+        let isConnected = false;
+        let isFlashing = false;
+        let progress = 0;
+        let progressInterval;
+        
+        const statusIndicator = document.getElementById('statusIndicator');
+        const statusText = document.getElementById('statusText');
+        const connectBtn = document.getElementById('connectBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const browseBtn = document.getElementById('browseBtn');
+        const firmwarePath = document.getElementById('firmwarePath');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+        const logContainer = document.getElementById('logContainer');
+        
+        // 添加日志函数
+        function addLog(message, type = 'info') {
+            const now = new Date();
+            const timeString = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            logEntry.innerHTML = `<span class="log-time">${timeString}</span> <span class="log-${type}">${message}</span>`;
+            
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        // 模拟设备连接
+        connectBtn.addEventListener('click', function() {
+            if (!isConnected) {
+                // 模拟连接过程
+                addLog('正在检测设备...', 'info');
+                
+                setTimeout(() => {
+                    isConnected = true;
+                    statusIndicator.className = 'status-indicator connected';
+                    statusText.textContent = '设备已连接 (SM-G998B)';
+                    connectBtn.innerHTML = '<i>🔌</i> 断开连接';
+                    addLog('设备连接成功: Samsung SM-G998B', 'info');
+                    addLog('设备状态: 正常, Bootloader: 已解锁', 'info');
+                }, 1500);
+            } else {
+                isConnected = false;
+                statusIndicator.className = 'status-indicator disconnected';
+                statusText.textContent = '设备未连接';
+                connectBtn.innerHTML = '<i>🔗</i> 连接设备';
+                addLog('设备已断开连接', 'info');
+            }
+        });
+        
+        // 刷新状态
+        refreshBtn.addEventListener('click', function() {
+            addLog('刷新设备状态...', 'info');
+            
+            if (!isConnected) {
+                addLog('未检测到设备，请连接设备后重试', 'warning');
+            } else {
+                addLog('设备状态: 已连接, 设备型号: SM-G998B', 'info');
+            }
+        });
+        
+        // 浏览文件
+        browseBtn.addEventListener('click', function() {
+            // 在实际应用中，这里会调用文件选择对话框
+            // 这里只是模拟
+            firmwarePath.value = 'C:/firmware/SM-G998B_Android12_Rom.zip';
+            addLog('已选择刷机包: SM-G998B_Android12_Rom.zip', 'info');
+        });
+        
+        // 开始刷机
+        startBtn.addEventListener('click', function() {
+            if (!isConnected) {
+                addLog('错误: 请先连接设备', 'error');
+                return;
+            }
+            
+            if (!firmwarePath.value) {
+                addLog('错误: 请选择刷机包文件', 'error');
+                return;
+            }
+            
+            isFlashing = true;
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            progress = 0;
+            
+            addLog('开始刷机过程...', 'info');
+            addLog('验证刷机包完整性...', 'info');
+            
+            // 模拟刷机进度
+            progressInterval = setInterval(() => {
+                progress += Math.random() * 5;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                progressPercent.textContent = Math.round(progress) + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    addLog('刷机完成!', 'info');
+                    addLog('设备将自动重启...', 'info');
+                    isFlashing = false;
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+                } else if (progress < 30) {
+                    addLog('正在写入系统分区...', 'info');
+                } else if (progress < 60) {
+                    addLog('正在写入数据分区...', 'info');
+                } else if (progress < 90) {
+                    addLog('正在校验系统完整性...', 'info');
+                }
+            }, 500);
+        });
+        
+        // 停止刷机
+        stopBtn.addEventListener('click', function() {
+            if (isFlashing) {
+                clearInterval(progressInterval);
+                isFlashing = false;
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                addLog('刷机过程已中止', 'warning');
+            }
+        });
+        
+        // 初始化日志
+        addLog('FlashTool Pro 初始化完成', 'info');
+    </script>
+</body>
+</html>
