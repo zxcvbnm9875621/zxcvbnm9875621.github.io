@@ -83,23 +83,6 @@
             font-weight: 500;
         }
         
-        .counter {
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 16px;
-            display: inline-block;
-            margin: 15px 0;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
         .social-links {
             display: flex;
             justify-content: center;
@@ -258,7 +241,7 @@
             border-radius: 10px;
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition;
+            transition: var(--transition);
             margin-top: 10px;
         }
         
@@ -293,11 +276,7 @@
             <h1 class="profile-name">没睡着的燕子</h1>
             <p class="profile-title">小米刷机专家 & 技术达人</p>
             
-            <div class="counter fade-in delay-1" id="visitorCounter">
-                正在加载访问计数...
-            </div>
-            
-            <div class="social-links fade-in delay-2">
+            <div class="social-links fade-in delay-1">
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-qq"></i></a>
                 <a href="#" class="social-link"><i class="fas fa-download"></i></a>
@@ -356,20 +335,8 @@
     </div>
 
     <script>
-        // 访问计数器
+        // 添加动画延迟类
         document.addEventListener('DOMContentLoaded', function() {
-            let count = localStorage.getItem('siteVisitorCount');
-            
-            if (!count) {
-                count = 1;
-            } else {
-                count = parseInt(count) + 1;
-            }
-            
-            localStorage.setItem('siteVisitorCount', count);
-            document.getElementById('visitorCounter').textContent = `您是第 ${count} 位访客`;
-            
-            // 添加动画延迟类
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.2}s`;
