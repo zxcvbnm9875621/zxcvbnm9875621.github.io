@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>没睡着的燕子 - 个人介绍</title>
+    <title>没睡着的燕子 - 小米刷机专家与技术达人</title>
+    <meta name="description" content="没睡着的燕子是专业的小米刷机专家，提供远程小米刷机救砖服务。抖音号：835331416162，QQ群：963729340">
+    <meta name="keywords" content="小米刷机,救砖,远程刷机,没睡着的燕子,酷安,抖音,QQ群">
+    <meta name="author" content="没睡着的燕子">
+    
+    <!-- Open Graph 标签，用于社交媒体分享 -->
+    <meta property="og:title" content="没睡着的燕子 - 小米刷机专家">
+    <meta property="og:description" content="专业提供远程小米刷机救砖服务">
+    <meta property="og:type" content="website">
+    
+    <!-- 如果将来有域名，替换这里的URL -->
+    <meta property="og:url" content="https://yourdomain.com">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* 原有的CSS样式保持不变 */
         :root {
             --primary-color: #007AFF;
             --secondary-color: #5856D6;
@@ -81,23 +94,6 @@
             color: var(--primary-color);
             margin: 20px 0;
             font-weight: 500;
-        }
-        
-        .counter {
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 16px;
-            display: inline-block;
-            margin: 15px 0;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
         
         .social-links {
@@ -258,7 +254,7 @@
             border-radius: 10px;
             text-decoration: none;
             font-weight: 500;
-            transition: var(--transition;
+            transition: var(--transition);
             margin-top: 10px;
         }
         
@@ -293,11 +289,7 @@
             <h1 class="profile-name">没睡着的燕子</h1>
             <p class="profile-title">小米刷机专家 & 技术达人</p>
             
-            <div class="counter fade-in delay-1" id="visitorCounter">
-                正在加载访问计数...
-            </div>
-            
-            <div class="social-links fade-in delay-2">
+            <div class="social-links fade-in delay-1">
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-qq"></i></a>
                 <a href="#" class="social-link"><i class="fas fa-download"></i></a>
@@ -336,7 +328,7 @@
                 
                 <div class="media-container fade-in delay-3">
                     <div class="coolapk-container">
-                        <img src="IMG_20250808_103717.png" alt="酷安帐号" class="coolapk-image">
+                        <img src="IMG_20250808_103717.png" alt="没睡着的燕子酷安帐号" class="coolapk-image">
                         <div class="coolapk-label">酷安帐号</div>
                     </div>
                     
@@ -356,20 +348,8 @@
     </div>
 
     <script>
-        // 访问计数器
+        // 添加动画延迟类
         document.addEventListener('DOMContentLoaded', function() {
-            let count = localStorage.getItem('siteVisitorCount');
-            
-            if (!count) {
-                count = 1;
-            } else {
-                count = parseInt(count) + 1;
-            }
-            
-            localStorage.setItem('siteVisitorCount', count);
-            document.getElementById('visitorCounter').textContent = `您是第 ${count} 位访客`;
-            
-            // 添加动画延迟类
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.2}s`;
