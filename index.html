@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>没睡着的燕子 - 小米刷机专家与技术达人</title>
-    <meta name="description" content="没睡着的燕子是专业的小米刷机专家，提供远程小米刷机救砖服务。抖音号：835331416162，QQ群：963729340">
-    <meta name="keywords" content="小米刷机,救砖,远程刷机,没睡着的燕子,酷安,抖音,QQ群">
+    <title>没睡着的燕子 - 玩机爱好者与摄影师</title>
+    <meta name="description" content="没睡着的燕子是玩机爱好者和没钱摄影师，提供远程小米刷机救砖服务。抖音号：835331416162，QQ群：963729340">
+    <meta name="keywords" content="小米刷机,救砖,远程刷机,没睡着的燕子,酷安,抖音,QQ群,玩机爱好者,摄影师">
     <meta name="author" content="没睡着的燕子">
     
     <!-- Open Graph 标签，用于社交媒体分享 -->
-    <meta property="og:title" content="没睡着的燕子 - 小米刷机专家">
-    <meta property="og:description" content="专业提供远程小米刷机救砖服务">
+    <meta property="og:title" content="没睡着的燕子 - 玩机爱好者与摄影师">
+    <meta property="og:description" content="玩机爱好者与没钱摄影师，提供远程小米刷机救砖服务">
     <meta property="og:type" content="website">
     
     <!-- 如果将来有域名，替换这里的URL -->
@@ -18,7 +18,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 原有的CSS样式保持不变 */
         :root {
             --primary-color: #007AFF;
             --secondary-color: #5856D6;
@@ -26,6 +25,8 @@
             --bg-color: #FFFFFF;
             --card-bg: #F5F5F7;
             --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --douyin-color: #FF0050;
+            --douyin-light: #FF3370;
         }
         
         * {
@@ -96,6 +97,40 @@
             font-weight: 500;
         }
         
+        .douyin-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .douyin-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--douyin-color) 0%, var(--douyin-light) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 0, 80, 0.3);
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .douyin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 80, 0.4);
+            background: linear-gradient(135deg, var(--douyin-light) 0%, var(--douyin-color) 100%);
+        }
+        
+        .douyin-btn i {
+            font-size: 24px;
+        }
+        
         .social-links {
             display: flex;
             justify-content: center;
@@ -132,6 +167,16 @@
         @media (max-width: 768px) {
             .content-section {
                 grid-template-columns: 1fr;
+            }
+            
+            .douyin-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .douyin-btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
         
@@ -287,9 +332,21 @@
         <!-- 顶部标题卡片 -->
         <div class="header-card fade-in">
             <h1 class="profile-name">没睡着的燕子</h1>
-            <p class="profile-title">小米刷机专家 & 技术达人</p>
+            <p class="profile-title">玩机爱好者 & 没钱摄影师</p>
             
-            <div class="social-links fade-in delay-1">
+            <!-- 抖音按钮区域 -->
+            <div class="douyin-buttons fade-in delay-1">
+                <a href="https://v.douyin.com/OVJ1twjq5CQ/" class="douyin-btn" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    抖音极速版
+                </a>
+                <a href="https://v.douyin.com/7VforWdyxY4/" class="douyin-btn" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    抖音
+                </a>
+            </div>
+            
+            <div class="social-links fade-in delay-2">
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-qq"></i></a>
                 <a href="#" class="social-link"><i class="fas fa-download"></i></a>
