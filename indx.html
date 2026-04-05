@@ -61,6 +61,7 @@
             margin-bottom: 30px;
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
         }
         
         .header-card:hover {
@@ -154,6 +155,16 @@
         
         .bilibili-btn i {
             font-size: 24px;
+        }
+        
+        /* 新加：随机语录样式 */
+        .random-quote {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 500;
+            opacity: 0.9;
         }
         
         .social-links {
@@ -366,6 +377,9 @@
                 </a>
             </div>
 
+            <!-- 新加：随机语录区域 -->
+            <div class="random-quote fade-in delay-2" id="quote"></div>
+
         </div>
         
         <div class="content-section">
@@ -422,6 +436,16 @@
             elements.forEach((el, index) => {
                 el.style.animationDelay = `${index * 0.2}s`;
             });
+
+            // 新加：随机语录逻辑
+            const quotes = [
+                "予人玫瑰，手有余香。",
+                "海内存知己，天涯若比邻。",
+                "大米a大米"
+            ];
+            const quoteEl = document.getElementById('quote');
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteEl.textContent = quotes[randomIndex];
         });
     </script>
 </body>
