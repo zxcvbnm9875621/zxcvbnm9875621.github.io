@@ -377,7 +377,7 @@
                 </a>
             </div>
 
-            <!-- 新加：随机语录区域 -->
+            <!-- 随机语录区域 -->
             <div class="random-quote fade-in delay-2" id="quote"></div>
 
         </div>
@@ -437,11 +437,14 @@
                 el.style.animationDelay = `${index * 0.2}s`;
             });
 
-            // 新加：随机语录逻辑
+            // 已加入你指定的3句科技金句
             const quotes = [
                 "予人玫瑰，手有余香。",
                 "海内存知己，天涯若比邻。",
-                "大米a大米"
+                "大米a大米",
+                "永远相信美好的事情即将发生!",
+                "创新就是把复杂变简单——乔布斯",
+                "优秀的代码是它自己最好的文档"
             ];
             const quoteEl = document.getElementById('quote');
             const randomIndex = Math.floor(Math.random() * quotes.length);
